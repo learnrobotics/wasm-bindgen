@@ -4181,7 +4181,7 @@ pub mod WebAssembly {
         ///
         /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Table/get)
         #[wasm_bindgen(method, catch, js_namespace = WebAssembly)]
-        pub fn get(this: &Table, index: u32) -> Result<Function, JsValue>;
+        pub fn get(this: &Table, index: u32) -> Result<super::Function, JsValue>;
 
         /// The `grow()` prototype method of the `WebAssembly.Table` object
         /// increases the size of the `Table` instance by a specified number of
@@ -4196,7 +4196,7 @@ pub mod WebAssembly {
         ///
         /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Table/set)
         #[wasm_bindgen(method, catch, js_namespace = WebAssembly)]
-        pub fn set(this: &Table, index: u32, function: &Function) -> Result<(), JsValue>;
+        pub fn set(this: &Table, index: u32, function: &super::Function) -> Result<(), JsValue>;
     }
 
     // WebAssembly.Global
@@ -4263,6 +4263,16 @@ pub mod WebAssembly {
         /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Memory/grow)
         #[wasm_bindgen(method, js_namespace = WebAssembly)]
         pub fn grow(this: &Memory, pages: u32) -> u32;
+    }
+
+    // WebAssembly.Function
+    #[wasm_bindgen]
+    extern "C" {
+        #[wasm_bindgen(js_namespace = WebAssembly, extends = super::Function, typescript_type = "WebAssembly.Function")]
+        #[derive(Clone, Debug, PartialEq, Eq)]
+        pub type Function;
+        #[wasm_bindgen(constructor, js_namespace = WebAssembly, catch)]
+        pub fn new(descriptor: &Object, function: &super::Function) -> Result<Function, JsValue>;
     }
 }
 
