@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["js_sys","wasm_bindgen","wasm_bindgen_futures","web_sys"];

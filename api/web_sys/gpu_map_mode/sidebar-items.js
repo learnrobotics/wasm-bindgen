@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["READ","The `GPUMapMode.READ` const."],["WRITE","The `GPUMapMode.WRITE` const."]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["COPY_DST","The `GPUTextureUsage.COPY_DST` const."],["COPY_SRC","The `GPUTextureUsage.COPY_SRC` const."],["RENDER_ATTACHMENT","The `GPUTextureUsage.RENDER_ATTACHMENT` const."],["STORAGE_BINDING","The `GPUTextureUsage.STORAGE_BINDING` const."],["TEXTURE_BINDING","The `GPUTextureUsage.TEXTURE_BINDING` const."]]};
