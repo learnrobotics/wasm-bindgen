@@ -4353,7 +4353,7 @@ pub mod WebAssembly {
         ///
         /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Table/get)
         #[wasm_bindgen(method, catch, js_namespace = WebAssembly)]
-        pub fn get(this: &Table, index: u32) -> Result<Function, JsValue>;
+        pub fn get(this: &Table, index: u32) -> Result<super::Function, JsValue>;
 
         /// The `grow()` prototype method of the `WebAssembly.Table` object
         /// increases the size of the `Table` instance by a specified number of
@@ -4368,7 +4368,17 @@ pub mod WebAssembly {
         ///
         /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Table/set)
         #[wasm_bindgen(method, catch, js_namespace = WebAssembly)]
-        pub fn set(this: &Table, index: u32, function: &Function) -> Result<(), JsValue>;
+        pub fn set(this: &Table, index: u32, function: &super::Function) -> Result<(), JsValue>;
+    }
+
+    // WebAssembly.Function
+    #[wasm_bindgen]
+    extern "C" {
+        #[wasm_bindgen(js_namespace = WebAssembly, extends = super::Function, typescript_type = "WebAssembly.Function")]
+        #[derive(Clone, Debug, PartialEq, Eq)]
+        pub type Function;
+        #[wasm_bindgen(constructor, js_namespace = WebAssembly, catch)]
+        pub fn new(descriptor: &Object, function: &super::Function) -> Result<Function, JsValue>;
     }
 
     // WebAssembly.Global
@@ -4435,6 +4445,60 @@ pub mod WebAssembly {
         /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Memory/grow)
         #[wasm_bindgen(method, js_namespace = WebAssembly)]
         pub fn grow(this: &Memory, pages: u32) -> u32;
+    }
+
+    // WebAssembly.Tag
+    #[wasm_bindgen]
+    extern "C" {
+        /// The `WebAssembly.Tag()` constructor creates a new `Tag` object
+        ///
+        /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Tag)
+        #[wasm_bindgen(js_namespace = WebAssembly, extends = Object, typescript_type = "WebAssembly.Tag")]
+        #[derive(Clone, Debug, PartialEq, Eq)]
+        pub type Tag;
+
+        /// The `WebAssembly.Tag()` constructor creates a new `Tag` object
+        ///
+        /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Tag)
+        #[wasm_bindgen(constructor, js_namespace = WebAssembly, catch)]
+        pub fn new(tag_descriptor: &Object) -> Result<Tag, JsValue>;
+    }
+
+    // WebAssembly.Exception
+    #[wasm_bindgen]
+    extern "C" {
+        /// The `WebAssembly.Exception()` constructor creates a new `Exception` object
+        ///
+        /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Exception)
+        #[wasm_bindgen(js_namespace = WebAssembly, extends = Object, typescript_type = "WebAssembly.Exception")]
+        #[derive(Clone, Debug, PartialEq, Eq)]
+        pub type Exception;
+
+        /// The `WebAssembly.Exception()` constructor creates a new `Exception` object
+        ///
+        /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Exception)
+        #[wasm_bindgen(constructor, js_namespace = WebAssembly, catch)]
+        pub fn new(tag: &Tag, payload: &Array) -> Result<Exception, JsValue>;
+
+        /// The `WebAssembly.Exception()` constructor creates a new `Exception` object
+        ///
+        /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Exception)
+        #[wasm_bindgen(constructor, js_namespace = WebAssembly, catch)]
+        pub fn new_with_options(tag: &Tag, payload: &Array, options: &Object) -> Result<Exception, JsValue>;
+
+        /// The `is()` prototype method of the `WebAssembly.Exception` can be used to
+        /// test if the Exception matches a given tag.
+        ///
+        /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Exception/is)
+        #[wasm_bindgen(method, js_namespace = WebAssembly)]
+        pub fn is(this: &Exception, tag: &Tag) -> bool;
+
+        /// The `getArg()` prototype method of the `WebAssembly.Exception` can be used
+        /// to get the value of a specified item in the exception's data arguments
+        ///
+        /// [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Exception/getArg)
+        #[wasm_bindgen(method, js_namespace = WebAssembly, js_name = getArg, catch)]
+        pub fn get_arg(this: &Exception, tag: &Tag, index: u32) -> Result<JsValue, JsValue>;
     }
 }
 
