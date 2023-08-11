@@ -118,6 +118,9 @@ stack_closures! {
     (6 invoke6 invoke6_mut A B C D E F)
     (7 invoke7 invoke7_mut A B C D E F G)
     (8 invoke8 invoke8_mut A B C D E F G H)
+    (9 invoke9 invoke9_mut A B C D E F G H I)
+    (10 invoke10 invoke10_mut A B C D E F G H I J)
+    (11 invoke11 invoke11_mut A B C D E F G H I J K)
 }
 
 impl<'a, 'b, A, R> IntoWasmAbi for &'a (dyn Fn(&A) -> R + 'b)
